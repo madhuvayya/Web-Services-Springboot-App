@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hm.webservicesapp.dto.MachineImageDTO;
+
 @RestController
 @RequestMapping("/web-services")
-public class MachineController {
+public class MachineImageController {
 
 	@GetMapping("/machine-image")
 	public String getAllMachineImages() {
@@ -24,8 +26,8 @@ public class MachineController {
 	}
 	
 	@PostMapping("/machine-image")
-	public String createMachineImage() {
-		return "Created Machine Image";
+	public String createMachineImage(@RequestBody MachineImageDTO machineImageDTO) {
+		return "Created Machine Image "+ machineImageDTO.toString();
 	}
 	
 	@PutMapping("/machine-image/{machine-image-id}")
