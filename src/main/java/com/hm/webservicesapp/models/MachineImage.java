@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.hm.webservicesapp.dto.MachineImageDTO;
+
 import lombok.Data;
 
 @Data
@@ -29,4 +31,17 @@ public class MachineImage {
 	
 //	@Column(name = "supported_instances")
 //	public List<String> instances; 
+	
+	public MachineImage() {}
+
+	public MachineImage(MachineImageDTO machineImageDTO) {
+		this.updateMachineImage(machineImageDTO);
+	}
+
+	public void updateMachineImage(MachineImageDTO machineImageDTO) {
+		this.machineName = machineImageDTO.machineName;
+		this.machineDescription = machineImageDTO.machineDescription;
+		this.isFreeTier = machineImageDTO.isFreeTier;		
+	}
+	
 }

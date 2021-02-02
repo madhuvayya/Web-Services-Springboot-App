@@ -34,8 +34,8 @@ public class MachineImageController {
 	}
 	
 	@PostMapping("/machine-image")
-	public String createMachineImage(@RequestBody MachineImageDTO machineImageDTO) {
-		return "Created Machine Image "+ machineImageDTO.toString();
+	public MachineImage createMachineImage(@RequestBody MachineImageDTO machineImageDTO) {
+		return machineImageService.createMachineImageData(machineImageDTO);
 	}
 	
 	@PutMapping("/machine-image/{machine-image-id}")
