@@ -1,5 +1,8 @@
 package com.hm.webservicesapp.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,19 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hm.webservicesapp.dto.MachineImageDTO;
+import com.hm.webservicesapp.models.MachineImage;
+import com.hm.webservicesapp.services.MachineImageService;
 
 @RestController
 @RequestMapping("/web-services")
 public class MachineImageController {
+	
+	@Autowired
+	private MachineImageService machineImageService;
 
 	@GetMapping("/machine-image")
-	public String getAllMachineImages() {
-		return "All machine Images";
+	public List<MachineImage> getAllMachineImages() {
+		return machineImageService.getAllMachineImagesData();
 	}
 	
 	@GetMapping("/machine-image/{machine-image-id}")
-	public String getMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
-		return "Machine Image with id: "+ machineImageId;
+	public MachineImage getMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
+		return machineImageService.getMachineImageDataById(machineImageId); 
 	}
 	
 	@PostMapping("/machine-image")
@@ -31,12 +39,13 @@ public class MachineImageController {
 	}
 	
 	@PutMapping("/machine-image/{machine-image-id}")
-	public String updateMachineImage(@PathVariable("machine-image-id") Long machineImageId, @RequestBody MachineImageDTO machineImageDTO) {
-		return "Updated Machine Image with id: "+ machineImageId+ "  "+ machineImageDTO.toString();
+	public MachineImage updateMachineImage(@PathVariable("machine-image-id") Long machineImageId, 
+									@RequestBody MachineImageDTO machineImageDTO) {
+		return machineImageService.updateMachineImageData(machineImageId, machineImageDTO);
 	}
 	
 	@DeleteMapping("/machine-image/{machine-image-id}")
-	public String deleteMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
-		return "Deleted Machine Image with id: "+ machineImageId;
+	public void deleteMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
+		machineImageService.deleteMachineImageData(machineImageId);
 	}
 }
