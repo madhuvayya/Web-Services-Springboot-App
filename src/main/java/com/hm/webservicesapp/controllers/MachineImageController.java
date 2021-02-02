@@ -26,7 +26,7 @@ public class MachineImageController {
 	@Autowired
 	private MachineImageService machineImageService;
 
-	@GetMapping("/machine-image")
+	@GetMapping("/machine-images")
 	public ResponseEntity<ResponseDTO> getAllMachineImages() {
 		List<MachineImage>  machineImagesData = machineImageService.getAllMachineImagesData();
 		if (machineImagesData != null) {
@@ -37,7 +37,7 @@ public class MachineImageController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 	
-	@GetMapping("/machine-image/{machine-image-id}")
+	@GetMapping("/machine-images/{machine-image-id}")
 	public ResponseEntity<ResponseDTO> getMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
 		MachineImage machineImageData =  machineImageService.getMachineImageDataById(machineImageId);
 		if (machineImageData != null) {
@@ -48,7 +48,7 @@ public class MachineImageController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 	
-	@PostMapping("/machine-image")
+	@PostMapping("/machine-images")
 	public ResponseEntity<ResponseDTO> createMachineImage(@RequestBody MachineImageDTO machineImageDTO) {
 		MachineImage machineImage = machineImageService.createMachineImageData(machineImageDTO);
 		if (machineImage != null) {
@@ -59,7 +59,7 @@ public class MachineImageController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 	
-	@PutMapping("/machine-image/{machine-image-id}")
+	@PutMapping("/machine-images/{machine-image-id}")
 	public ResponseEntity<ResponseDTO> updateMachineImage(@PathVariable("machine-image-id") Long machineImageId, 
 									@RequestBody MachineImageDTO machineImageDTO) {
 		MachineImage machineImage = machineImageService.updateMachineImageData(machineImageId, machineImageDTO);
@@ -71,7 +71,7 @@ public class MachineImageController {
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 	
-	@DeleteMapping("/machine-image/{machine-image-id}")
+	@DeleteMapping("/machine-images/{machine-image-id}")
 	public ResponseEntity<ResponseDTO> deleteMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
 		machineImageService.deleteMachineImageData(machineImageId);
 		ResponseDTO responseDTO = new ResponseDTO(204, "No Content", null);
