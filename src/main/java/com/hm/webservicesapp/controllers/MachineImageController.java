@@ -31,8 +31,8 @@ public class MachineImageController {
 	}
 	
 	@PutMapping("/machine-image/{machine-image-id}")
-	public String updateMachineImage(@PathVariable("machine-image-id") Long machineImageId) {
-		return "Updated Machine Image with id: "+ machineImageId;
+	public String updateMachineImage(@PathVariable("machine-image-id") Long machineImageId, @RequestBody MachineImageDTO machineImageDTO) {
+		return "Updated Machine Image with id: "+ machineImageId+ "  "+ machineImageDTO.toString();
 	}
 	
 	@DeleteMapping("/machine-image/{machine-image-id}")
